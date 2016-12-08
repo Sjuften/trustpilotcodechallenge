@@ -7,7 +7,7 @@ using System.Text;
 
 namespace trustpilot.app
 {
-    public class FindSecretPhrase
+    public class SecretPhrase
     {
         public string Find(string path, string anagram, string phrase)
         {

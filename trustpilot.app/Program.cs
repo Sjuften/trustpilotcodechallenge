@@ -8,20 +8,20 @@ namespace trustpilot.app
     {
         public static void Main(string[] args)
         {
+            Console.WriteLine("Looking for phrase");
+            var sw = new Stopwatch();
+            sw.Start();
+
             var anagram = "poultry outwits ants".Trim();
             var phrase = "4624d200580677270a54ccff86b9610e".ToUpper();
             var path = Path.Combine(Directory.GetCurrentDirectory(), "wordlist");
 
-            var fsp = new FindSecretPhrase();
-            var sw = new Stopwatch();
-            Console.WriteLine("Looking for phrase");
-            sw.Start();
-            var matched = fsp.Find(path, anagram, phrase);
+            var matched = new SecretPhrase().Find(path, anagram, phrase);
             sw.Stop();
             Console.WriteLine(matched);
-            Console.WriteLine("Time: " + sw.ElapsedMilliseconds / 1000);
+            var timeInSec = TimeSpan.FromMilliseconds(sw.ElapsedMilliseconds).TotalSeconds;
+            Console.WriteLine($"Time: {timeInSec} sec");
             Console.ReadLine();
         }
     }
 }
-

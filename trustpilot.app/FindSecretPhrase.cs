@@ -49,7 +49,7 @@ namespace trustpilot.app
                         permutation[0] = t;
                         permutation[1] = wCombine.Split(' ')[0];
                         permutation[2] = wCombine.Split(' ')[1];
-                        var perm = GetPermutationsWithRept(permutation, permutationLength);
+                        var perm = GetPermutations(permutation, permutationLength);
                         var answer = CheckForMatch(perm, phrase);
                         if (!string.IsNullOrEmpty(answer)) return answer;
                     }
@@ -81,15 +81,14 @@ namespace trustpilot.app
                     (t1, t2) => t1.Concat(new T[] {t2}));
         }
 
-        private IEnumerable<IEnumerable<T>>
-            GetPermutationsWithRept<T>(IEnumerable<T> list, int length)
+        private  IEnumerable<IEnumerable<T>>
+            GetPermutations<T>(IEnumerable<T> list, int length)
         {
             if (length == 1) return list.Select(t => new T[] {t});
-            return GetPermutationsWithRept(list, length - 1)
-                .SelectMany(t => list,
+            return GetPermutations(list, length - 1)
+                .SelectMany(t => list.Where(o => !t.Contains(o)),
                     (t1, t2) => t1.Concat(new T[] {t2}));
         }
-
 
         private bool IsAnagram(string s1, string s2)
         {

@@ -16,9 +16,9 @@ namespace trustpilot.app
             var phrase = "4624d200580677270a54ccff86b9610e".ToUpper();
             var path = Path.Combine(Directory.GetCurrentDirectory(), "wordlist");
 
-            var matched = new SecretPhrase().Find(path, anagram, phrase);
+            var secretWord = new SecretPhrase().Find(path, anagram, phrase);
             sw.Stop();
-            Console.WriteLine(matched);
+            Console.WriteLine(secretWord);
             var timeInSec = TimeSpan.FromMilliseconds(sw.ElapsedMilliseconds).TotalSeconds;
             Console.WriteLine($"Time: {timeInSec} sec");
             Console.ReadLine();

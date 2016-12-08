@@ -26,8 +26,8 @@ namespace trustpilot.app
         {
             var a1 = actualWords.Where(x => x.Length == 4).Distinct().ToArray();
             var a2 = actualWords.Where(x => x.Length == 7).Distinct().ToArray();
-            var word7Com = GetKCombsWithRept(a2, 2);
-            return CheckForSecretPhrase(a1, word7Com, anagram, phrase);
+            var possibleCombos = GetKCombsWithRept(a2, 2);
+            return CheckForSecretPhrase(a1, possibleCombos, anagram, phrase);
         }
 
         private string CheckForSecretPhrase(IEnumerable<string> arr1, IEnumerable<IEnumerable<string>> arr2,
@@ -40,13 +40,13 @@ namespace trustpilot.app
             {
                 foreach (var word in arr2)
                 {
-                    var w7 = string.Join(" ", word);
-                    var result = t + " " + w7;
+                    var wCombine = string.Join(" ", word);
+                    var result = t + " " + wCombine;
                     if (IsAnagram(result, anagram))
                     {
                         permutation[0] = t;
-                        permutation[1] = w7.Split(' ')[0];
-                        permutation[2] = w7.Split(' ')[1];
+                        permutation[1] = wCombine.Split(' ')[0];
+                        permutation[2] = wCombine.Split(' ')[1];
                         var perm = GetPermutationsWithRept(permutation, 3);
                         var answer = CheckForMatch(perm, phrase);
                         if (!string.IsNullOrEmpty(answer)) return answer;

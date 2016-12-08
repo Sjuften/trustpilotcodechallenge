@@ -24,13 +24,14 @@ namespace trustpilot.app
 
         private string LookForSecretPhrase(IEnumerable<string> actualWords, string anagram, string phrase)
         {
-            var word4 = actualWords.Where(x => x.Length == 4).Distinct().ToArray();
-            var word7 = actualWords.Where(x => x.Length == 7).Distinct().ToArray();
-            var word7Com = GetKCombsWithRept(word7, 2);
-            return CheckForSecretPhrase(word4, word7Com, anagram, phrase);
+            var a1 = actualWords.Where(x => x.Length == 4).Distinct().ToArray();
+            var a2 = actualWords.Where(x => x.Length == 7).Distinct().ToArray();
+            var word7Com = GetKCombsWithRept(a2, 2);
+            return CheckForSecretPhrase(a1, word7Com, anagram, phrase);
         }
 
-        private string CheckForSecretPhrase(IEnumerable<string> arr1, IEnumerable<IEnumerable<string>> arr2, string anagram,
+        private string CheckForSecretPhrase(IEnumerable<string> arr1, IEnumerable<IEnumerable<string>> arr2,
+            string anagram,
             string phrase)
         {
             var permutation = new string[3];

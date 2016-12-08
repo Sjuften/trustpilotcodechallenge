@@ -14,7 +14,7 @@ namespace trustpilot.app
 
             var fsp = new FindSecretPhrase();
             var sw = new Stopwatch();
-            Console.WriteLine("Starter");
+            Console.WriteLine("Looking for phrase");
             sw.Start();
             var matched = fsp.Find(path, anagram, phrase);
             sw.Stop();

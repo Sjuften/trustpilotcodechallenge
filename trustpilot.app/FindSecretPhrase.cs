@@ -27,7 +27,7 @@ namespace trustpilot.app
             const int permutationLength = 2;
             var a1 = actualWords.Where(x => x.Length == 4).Distinct().ToArray();
             var a2 = actualWords.Where(x => x.Length == 7).Distinct().ToArray();
-            var possibleCombos = GetKCombsWithRept(a2, permutationLength);
+            var possibleCombos = GetKCombs(a2, permutationLength);
             return CheckForSecretPhrase(a1, possibleCombos, anagram, phrase);
         }
 
@@ -72,17 +72,16 @@ namespace trustpilot.app
             return string.Empty;
         }
 
-
         private IEnumerable<IEnumerable<T>>
-            GetKCombsWithRept<T>(IEnumerable<T> list, int length) where T : IComparable
+            GetKCombs<T>(IEnumerable<T> list, int length) where T : IComparable
         {
             if (length == 1) return list.Select(t => new T[] {t});
-            return GetKCombsWithRept(list, length - 1)
-                .SelectMany(t => list.Where(o => o.CompareTo(t.Last()) >= 0),
+            return GetKCombs(list, length - 1)
+                .SelectMany(t => list.Where(o => o.CompareTo(t.Last()) > 0),
                     (t1, t2) => t1.Concat(new T[] {t2}));
         }
 
-        private  IEnumerable<IEnumerable<T>>
+        private IEnumerable<IEnumerable<T>>
             GetPermutationsWithRept<T>(IEnumerable<T> list, int length)
         {
             if (length == 1) return list.Select(t => new T[] {t});

@@ -42,7 +42,7 @@ namespace trustpilot.app
                 {
                     var w7 = string.Join(" ", word);
                     var result = t + " " + w7;
-                    if (IsAnagram(result.Replace(" ", string.Empty).Trim(), anagram.Replace(" ", string.Empty)))
+                    if (IsAnagram(result, anagram))
                     {
                         permutation[0] = t;
                         permutation[1] = w7.Split(' ')[0];

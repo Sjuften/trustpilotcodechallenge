@@ -11,11 +11,11 @@ namespace trustpilot.app
     {
         public string Find(string path, string anagram, string phrase)
         {
-            var inputWords = File.ReadAllLines(path).Select(x => x.Trim())
+            var wordList = File.ReadAllLines(path).Select(x => x.Trim())
                 .Where(x => x.Length > 0);
 
             var actualWords =
-            (from word in inputWords
+            (from word in wordList
                 where word.CheckForDuplicates(anagram) && word.SubSet(anagram)
                 select word.Trim()).ToList();
 

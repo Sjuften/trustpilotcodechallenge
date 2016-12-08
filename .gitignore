@@ -1,0 +1,6 @@
+obj/
+bin/
+**.sln
+**.xproj
+./idea
+project.lock.json

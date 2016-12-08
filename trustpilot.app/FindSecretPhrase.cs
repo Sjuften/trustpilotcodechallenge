@@ -82,7 +82,7 @@ namespace trustpilot.app
                     (t1, t2) => t1.Concat(new T[] {t2}));
         }
 
-        private static IEnumerable<IEnumerable<T>>
+        private  IEnumerable<IEnumerable<T>>
             GetPermutationsWithRept<T>(IEnumerable<T> list, int length)
         {
             if (length == 1) return list.Select(t => new T[] {t});

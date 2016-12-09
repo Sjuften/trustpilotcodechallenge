@@ -113,7 +113,7 @@ namespace trustpilot.app
                 var sb = new StringBuilder();
                 foreach (var t in hashBytes)
                 {
-                    sb.Append(t.ToString("X2"));
+                    sb.Append(t.ToString("x2"));
                 }
                 return sb.ToString();
             }

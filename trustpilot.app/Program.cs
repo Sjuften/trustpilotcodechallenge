@@ -9,7 +9,7 @@ namespace trustpilot.app
         public static void Main(string[] args)
         {
             var anagram = "poultry outwits ants".Trim();
-            var phrase = "4624d200580677270a54ccff86b9610e".ToUpper();
+            var phrase = "4624d200580677270a54ccff86b9610e";
             var path = Path.Combine(Directory.GetCurrentDirectory(), "wordlist");
 
             Console.WriteLine("Looking for phrase");

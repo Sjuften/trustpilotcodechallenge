@@ -35,7 +35,7 @@ namespace trustpilot.app
             string anagram,
             string phrase)
         {
-            var finalAnswer = string.Empty;
+            const string notFound = "Not found";
             const int permutationLength = 3;
             foreach (var word in arr1)
             {
@@ -50,7 +50,7 @@ namespace trustpilot.app
                 }
             }
 
-            return finalAnswer;
+            return notFound;
         }
 
         private string CheckForMatch(IEnumerable<IEnumerable<string>> permutations, string phrase)

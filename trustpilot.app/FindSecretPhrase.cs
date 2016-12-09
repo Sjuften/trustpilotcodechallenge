@@ -42,27 +42,24 @@ namespace trustpilot.app
                 foreach (var combo in pc)
                 {
                     var result = word + " " + string.Join(" ", combo);
-                    if (IsAnagram(result, anagram))
-                    {
-                        var perm = PermuteWord(result, permutationLength);
-                        var answer = CheckForMatch(perm, phrase);
-                        if (!string.IsNullOrEmpty(answer)) return answer;
-                    }
+                    if (!IsAnagram(result, anagram)) continue;
+
+                    var perm = PermuteWord(result, permutationLength);
+                    var answer = CheckForMatch(perm, phrase);
+                    if (!string.IsNullOrEmpty(answer)) return answer;
                 }
             }
 
             return finalAnswer;
         }
 
-        private string CheckForMatch(IEnumerable<IEnumerable<string>> perm, string phrase)
+        private string CheckForMatch(IEnumerable<IEnumerable<string>> permutations, string phrase)
         {
-            foreach (var t in perm)
+            foreach (var pm in permutations)
             {
-                var full = string.Join(" ", t);
-                if (CompareMD5(CreateMD5(full), phrase))
-                {
-                    return full;
-                }
+                var word = string.Join(" ", pm);
+                if (!CompareMD5(CreateMD5(word), phrase)) continue;
+                return word;
             }
             return string.Empty;
         }

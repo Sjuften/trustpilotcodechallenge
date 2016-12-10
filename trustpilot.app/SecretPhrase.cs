@@ -71,7 +71,7 @@ namespace trustpilot.app
             if (length == 1) return list.Select(t => new T[] {t});
             return GetKCombs(list, length - 1)
                 .SelectMany(t => list.Where(o => o.CompareTo(t.Last()) > 0),
-                    (t1, t2) => t1.Concat(new T[] {t2}));
+                    (t1, t2) => t1.Concat(new[] {t2}));
         }
 
         private IEnumerable<IEnumerable<string>> PermuteWord(string word, int permutationLength)
@@ -86,7 +86,7 @@ namespace trustpilot.app
             if (length == 1) return list.Select(t => new T[] {t});
             return GetPermutations(list, length - 1)
                 .SelectMany(t => list.Where(o => !t.Contains(o)),
-                    (t1, t2) => t1.Concat(new T[] {t2}));
+                    (t1, t2) => t1.Concat(new[] {t2}));
         }
 
         private bool IsAnagram(string s1, string s2)

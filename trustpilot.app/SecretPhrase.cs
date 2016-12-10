@@ -17,6 +17,7 @@ namespace trustpilot.app
             var actualWords =
             (from word in wordList
                 where word.CheckForDuplicates(anagram) && word.SubSet(anagram)
+                      && (word.Length == 4 || word.Length == 7)
                 select word.Trim()).ToList();
 
             return LookForSecretPhrase(actualWords, anagram, phrase);
